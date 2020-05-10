@@ -1,4 +1,5 @@
-const { app, BrowserWindow, Menu, Tray, nativeImage } = require('electron')
+const { app, BrowserWindow, Menu, Tray, nativeImage } = require('electron');
+const path = require('path');
 
 // 使用全局变量防止被系统垃圾回收
 let win = null;
@@ -8,7 +9,7 @@ let forceQuit = false;
 
 const quit = function() {
   forceQuit = true;
-  tray.destroy();
+  tray && tray.destroy();
   app.exit();
 };
 
@@ -41,6 +42,7 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1000,
     height: 680,
+    resizable: false,
     webPreferences: {
       nodeIntegration: true
     }
@@ -54,10 +56,27 @@ function createWindow () {
   });
 
   win.loadURL('https://wx.qq.com');
+
+  // removeTip();
+}
+
+// 移除PC下载提示
+let isTipRemoved = false;
+function removeTip() {
+  if (win && !isTipRemoved) {
+    setTimeout(() => {
+      if (win.webContents.findInPage('下载微信PC版') > 0) {
+        win.webContents.executeJavaScript('document.getElementsByClassName("download_entry")[0].remove()');
+        isTipRemoved = true;
+      } else {
+        removeTip()
+      }
+    }, 1000);
+  }
 }
 
 function initTray() {
-  const icon = nativeImage.createFromPath('C:\\SideProjects\\MyWeChat\\assets\\avatar.jpg');
+  const icon = nativeImage.createFromPath(path.join(__dirname, '../static/icon.png'));
   tray = new Tray(icon);
 
   const openWindow = function() {
