@@ -1,0 +1,14 @@
+{
+  "name": "my_wechat",
+  "version": "1.0.0",
+  "description": "WeChat desktop package of web",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./src"
+  },
+  "author": "helloworldchao",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^8.2.5"
+  }
+}
