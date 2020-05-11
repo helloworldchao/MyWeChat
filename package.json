@@ -9,8 +9,14 @@
     "dist": "electron-builder"
   },
   "build": {
+    "productName": "MyWeChat",
     "appId": "tech.helloworldchao.my.wechat",
-    "files": ["**/*", "build/icon.*"]
+    "linux": {
+      "target": ["deb", "zip"]
+    },
+    "win": {
+      "target": ["nsis", "zip"]
+    }
   },
   "author": "helloworldchao",
   "license": "MIT",

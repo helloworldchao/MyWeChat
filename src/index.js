@@ -94,6 +94,7 @@ function initTray() {
     { label: '退出', type: 'normal', click: quit }
   ]);
 
+  tray.setToolTip('MyWeChat');
   tray.setContextMenu(contextMenu);
 }
 
