@@ -12,10 +12,16 @@
     "productName": "MyWeChat",
     "appId": "tech.helloworldchao.my.wechat",
     "linux": {
-      "target": ["deb", "zip"]
+      "target": [
+        "deb",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis", "zip"]
+      "target": [
+        "nsis",
+        "zip"
+      ]
     }
   },
   "author": "helloworldchao",
